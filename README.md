@@ -3,6 +3,10 @@ Embed videos in Jekyll webpages without a plugin. If you are hosting your webpag
 
 See the raw text in `example.md` for a complete example.
 
+## Demo
+
+http://www.nathan-lam.com/projects/metal-slug
+
 ## Embed Youtube 
 
 Create a file in your `_includes` folder called `youtubePlayer.html` with this code inside: 
