@@ -1,6 +1,6 @@
 ---
-youtubeId: --b-9HrKK6w
-vimeoID: --b-9HrKK6w
+youtubeId: putYourIDHere
+vimeoID: putYourIDHere
 ---
 # Embed Youtube
 
@@ -9,7 +9,7 @@ Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Fl
 <!---
 Include this next line in your .md for Youtube videos, make sure to put your video ID up there!
 
-Example:     youtubeId: putYourIDHere
+Example:     youtubeId: --b-9HrKK6w
 -->
 
 {% include youtubePlayer.html id=page.youtubeId %}
@@ -22,7 +22,7 @@ More Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor tex
 <!---
 Include this next line in your .md file for Vimeo videos, make sure to put your video ID up there!
 
-Example:     vimeoID: putYourIDHere
+Example:     vimeoID: --b-9HrKK6w
 -->
 
 {% include vimeoPlayer.html id=page.vimeoID %}
