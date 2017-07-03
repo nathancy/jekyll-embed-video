@@ -1,6 +1,6 @@
 ---
 youtubeId: putYourIDHere
-vimeoID: putYourIDHere
+vimeoId: putYourIDHere
 ---
 # Embed Youtube
 
@@ -25,4 +25,4 @@ Include this next line in your .md file for Vimeo videos, make sure to put your 
 Example:     vimeoID: --b-9HrKK6w
 -->
 
-{% include vimeoPlayer.html id=page.vimeoID %}
+{% include vimeoPlayer.html id=page.vimeoId %}
