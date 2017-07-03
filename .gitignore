@@ -1,0 +1,98 @@
+# Ignore IntelliJ Project files.
+*.iml
+.idea/
+
+# If on a Mac, ignore DS_Store.
+.DS_Store
+
+# Build node_modules locally.
+node_modules/
+
+# Ignore the debug log generated when, for example, ESLint fails.
+npm-debug.log
+
+_site
+.sass-cache
+.jekyll-metadata
+
+logs
+*.log
+project/project
+project/target
+.target
+target
+tmp
+.cache
+.history
+.idea
+/*.iml
+/out
+/.idea_modules
+/.classpath
+/.project
+/RUNNING_PID
+/.settings
+/bin
+conf/rc.application.conf
+conf/rc.deployment.secret
+conf/live.application.conf
+conf/live.deployment.secret
+/target/
+.DS_Store
+
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+
+# Sensitive or high-churn files:
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+
+# Gradle:
+.idea/gradle.xml
+.idea/libraries
+
+# Mongo Explorer plugin:
+.idea/mongoSettings.xml
+
+## File-based project format:
+*.iws
+
+## Plugin-specific files:
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+*.iml
+
+# jekyll
+_site
+*.DS_Store
+*.sublime-project
+*.sublime-workspace
+codekit-config.json
+node_modules
+.sass-cache
+.idea
+*.iml
+s3_website.yml
+.assets-cache
