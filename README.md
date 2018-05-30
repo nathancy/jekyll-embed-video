@@ -5,7 +5,7 @@ See the raw text in `example.md` for a complete example.
 
 ## Demo
 
-http://www.nathan-lam.com/projects/metal-slug
+http://www.nathan-lam.com/projects/jekyll-embed-video
 
 ## Embed Youtube 
 
