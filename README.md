@@ -54,6 +54,40 @@ On the top of your .md file, put the vimeo video ID. You could also put the ID o
 vimeoId: putYourIDHere
 ---
 ```
+
+## Embed Twitch 
+
+Create a file in your `_includes` folder called `twitchPlayer.html` with this code inside: 
+
+```
+<div class="embed-container">
+  <iframe
+      src="https://clips.twitch.tv/embed?clip={{ include.id }}"
+      height="360"
+      width="640"
+      frameborder="0"
+      scrolling="no"
+      muted="false"
+      autoplay="false"
+      allowfullscreen="true">
+  </iframe>
+</div>
+```
+
+Place this snippet inside your .md file where you want to embed your video:
+
+```
+{% include twitchPlayer.html id=page.twitchId %}
+```
+
+On the top of your .md file, put the Twitch video ID. You could also put the ID of the video directly.
+
+```
+---
+twitchId: putYourIDHere
+---
+```
+
 ## Responsive Videos
 For responsive videos that automatically resize with changing window sizes, add in `video-embed.css`.
 
@@ -81,6 +115,7 @@ For responsive videos that automatically resize with changing window sizes, add 
 ---
 youtubeId: putYourIDHere
 vimeoId: putYourIDHere
+twitchId: putYourIDHere
 ---
 # Embed Youtube
 
@@ -106,4 +141,16 @@ Example:     vimeoID: --b-9HrKK6w
 -->
 
 {% include vimeoPlayer.html id=page.vimeoId %}
+
+# Embed Twitch
+
+More Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. 
+
+<!---
+Include this next line in your .md file for Twitch videos, make sure to put your video ID up there!
+
+Example:     twitchId: --b-9HrKK6w
+-->
+
+{% include twitchPlayer.html id=page.twitchId %}
 ```

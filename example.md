@@ -1,6 +1,7 @@
 ---
 youtubeId: putYourIDHere
 vimeoId: putYourIDHere
+twitchId: putYourIDHere
 ---
 # Embed Youtube
 
@@ -26,3 +27,15 @@ Example:     vimeoID: --b-9HrKK6w
 -->
 
 {% include vimeoPlayer.html id=page.vimeoId %}
+
+# Embed Twitch
+
+More Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. 
+
+<!---
+Include this next line in your .md file for Twitch videos, make sure to put your video ID up there!
+
+Example:     twitchId: --b-9HrKK6w
+-->
+
+{% include twitchPlayer.html id=page.twitchId %}
