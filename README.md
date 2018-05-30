@@ -13,7 +13,13 @@ Create a file in your `_includes` folder called `youtubePlayer.html` with this c
 
 ```
 <div class="embed-container">
-  <iframe width="700" height="480" src="https://www.youtube.com/embed/{{ include.id }}" frameborder="0" allowfullscreen=""></iframe>
+  <iframe
+      src="https://www.youtube.com/embed/{{ include.id }}"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
 </div>
 ```
 
@@ -37,7 +43,15 @@ Create a file in your `_includes` folder called `vimeoPlayer.html` with this cod
 
 ```
 <div class="embed-container">
-  <iframe width="500" height="281" src="https://player.vimeo.com/video/{{ include.id }}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  <iframe
+      src="https://player.vimeo.com/video/{{ include.id }}"
+      width="500"
+      height="281"
+      frameborder="0"
+      webkitallowfullscreen
+      mozallowfullscreen
+      allowfullscreen>
+  </iframe>
 </div>
 ```
 
