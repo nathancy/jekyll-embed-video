@@ -1,5 +1,5 @@
 # jekyll-embed-video
-Embed YouTube, Vimeo, and Twitch videos/clips in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use 'includes' instead of plugins.
+Embed YouTube, Vimeo, and Twitch videos/clips in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
 
 See the raw text in `example.md` for a complete example.
 
@@ -132,11 +132,11 @@ For responsive videos that automatically resize with changing window sizes, add 
 ```
 
 ## Iframe Attributes
-These attributes are defined in the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe). You can set various additional attributes on the embedded video no matter what provider you use. 
+These attributes are defined in the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe). You can set various additional attributes no matter what provider you use. 
 
 | Name | Type | Description |
 | :--- | --- | --- |
-| 'allowfullscreen' | boolean | If `true`, the player can go full screen. |
+| `allowfullscreen` | boolean | If `true`, the player can go full screen. |
 | `height` | integer | Height of the embedded window, in pixels. |
 | `width` | integer | Width of the embedded window, in pixels. |
 | `scrolling` | boolean | Indicates when the browser should provide a scroll bar (or other scrolling device) for the frame. Recommended: `no`. |
