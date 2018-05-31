@@ -1,5 +1,5 @@
 # jekyll-embed-video
-Embed videos in Jekyll webpages without a plugin. If you are hosting your webpage using Github pages, you can't use third party plugins. Here is a method to use 'includes' instead of plugins. 
+Embed YouTube, Vimeo, and Twitch videos/clips in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use 'includes' instead of plugins.
 
 See the raw text in `example.md` for a complete example.
 
@@ -7,7 +7,15 @@ See the raw text in `example.md` for a complete example.
 
 http://www.nathan-lam.com/projects/jekyll-embed-video
 
-## Embed Youtube 
+## Table of Contents
+* [Embed YouTube](#embed-youtube)
+* [Embed Vimeo](#embed-vimeo)
+* [Embed Twitch](#embed-twitch)
+* [Responsive Videos](#responsive-videos)
+* [Iframe Attributes](#iframe-attributes)
+* [Full Example](#full-example)
+
+## Embed YouTube 
 
 Create a file in your `_includes` folder called `youtubePlayer.html` with this code inside: 
 
@@ -29,7 +37,7 @@ Place this snippet inside your .md file where you want to embed your video:
 {% include youtubePlayer.html id=page.youtubeId %}
 ```
 
-On the top of your .md file, put the youtube video ID. You could also put the ID of the video directly.
+On the top of your .md file, put the YouTube video ID. You could also put the ID of the video directly.
 
 ```
 ---
@@ -61,7 +69,7 @@ Place this snippet inside your .md file where you want to embed your video:
 {% include vimeoPlayer.html id=page.vimeoId %}
 ```
 
-On the top of your .md file, put the vimeo video ID. You could also put the ID of the video directly.
+On the top of your .md file, put the Vimeo video ID. You could also put the ID of the video directly.
 
 ```
 ---
@@ -122,6 +130,21 @@ For responsive videos that automatically resize with changing window sizes, add 
   height: 100%;
 }
 ```
+
+## Iframe Attributes
+These attributes are defined in the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe). You can set various additional attributes on the embedded video no matter what provider you use. 
+
+| Name | Type | Description |
+| :--- | --- | --- |
+| 'allowfullscreen' | boolean | If `true`, the player can go full screen. |
+| `height` | integer | Height of the embedded window, in pixels. |
+| `width` | integer | Width of the embedded window, in pixels. |
+| `scrolling` | boolean | Indicates when the browser should provide a scroll bar (or other scrolling device) for the frame. Recommended: `no`. |
+| `src` | string | The video/clip source URL link |
+| `autoplay` | boolean | If `true`, the video starts playing automatically, without the user clicking play. The exception is mobile devices, on which video cannot be played without user interaction. Default: `true`. |
+| `muted` | boolean | Specifies whether the initial state of the video is muted. Default: `false`. |
+| `time` | 1h2m3s | Time in the video where playback starts. Specifies hours, minutes, and seconds. Default: 0h0m0s (the start of the video). |
+
 
 ## Full example
 
