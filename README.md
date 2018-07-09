@@ -1,5 +1,5 @@
 # jekyll-embed-video
-Embed YouTube, Vimeo, and Twitch videos/clips in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
+Embed YouTube, Vimeo, Twitch, and Google Drive videos/clips in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
 
 See the raw text in `example.md` for a complete example.
 
@@ -11,6 +11,7 @@ http://www.nathan-lam.com/projects/jekyll-embed-video
 * [Embed YouTube](#embed-youtube)
 * [Embed Vimeo](#embed-vimeo)
 * [Embed Twitch](#embed-twitch)
+* [Embed Google Drive](#embed-google-drive)
 * [Responsive Videos](#responsive-videos)
 * [Iframe Attributes](#iframe-attributes)
 * [Full Example](#full-example)
@@ -110,6 +111,49 @@ twitchId: putYourIDHere
 ---
 ```
 
+## Embed Google Drive 
+
+Embedding Google Drive videos have additional steps. 
+
+1. For the desired video, change the link sharing setting to `On - Anyone with the link`. This will make the video accessible to anyone who has the link as no sign-in is required. **Important**: If you do not change the video setting to this option, your video will not show.
+2. Double click the video to show the preview. Click the setting options and select "Open in new window". Now click on the setting option again and select "Embed item". The iframe code should appear. For example:
+
+```
+<iframe src="https://drive.google.com/file/d/**1EC8BnjJMon-vqy-UhLKk9sf_oukZzEbP/preview**" width="640" height="480"></iframe>
+```
+
+The bolded section will be your video ID.
+
+Note: Right clicking the video will not bring up the embed option. You must open the video in a new window. 
+
+Create a file in your `_includes` folder called `googleDrivePlayer.html` with this code inside: 
+
+```
+<div class="embed-container">
+  <iframe
+      width="640"
+      height="480"
+      src="https://drive.google.com/file/d/{{ include.id }}"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+```
+
+Place this snippet inside your .md file where you want to embed your video:
+
+```
+{% include googleDrivePlayer.html id=page.driveId %}
+```
+
+On the top of your .md file, put the Google Drive video ID. You could also put the ID of the video directly.
+
+```
+---
+driveId: putYourIDHere
+---
+```
+
 ## Responsive Videos
 For responsive videos that automatically resize with changing window sizes, add in `video-embed.css`.
 
@@ -153,6 +197,7 @@ These attributes are defined in the [MDN web docs](https://developer.mozilla.org
 youtubeId: putYourIDHere
 vimeoId: putYourIDHere
 twitchId: putYourIDHere
+driveId: putYourIDHere
 ---
 # Embed Youtube
 
@@ -190,4 +235,16 @@ Example:     twitchId: --b-9HrKK6w
 -->
 
 {% include twitchPlayer.html id=page.twitchId %}
+
+# Embed Google Drive
+
+More Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. 
+
+<!---
+Include this next line in your .md file for Google Drive videos, make sure to put your video ID up there!
+
+Example:     driveId: 0B7L_dMcaZknxVTRndmdSQ0F5OFE/preview
+-->
+
+{% include googleDrivePlayer.html id=page.driveId %}
 ```
