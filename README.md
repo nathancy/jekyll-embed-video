@@ -115,14 +115,17 @@ twitchId: putYourIDHere
 
 Embedding Google Drive videos have additional steps. 
 
-1. For the desired video, change the link sharing setting to `On - Anyone with the link`. This will make the video accessible to anyone who has the link as no sign-in is required. **Important**: If you do not change the video setting to this option, your video will not show.
+1. For the desired video, change the link sharing setting to `On - Anyone with the link`. This will make the video accessible to anyone who has the link as no sign-in is required. 
+  
+  **Important**: If you do not change the video setting to this option, your video will not show.
+  
 2. Double click the video to show the preview. Click the setting options and select "Open in new window". Now click on the setting option again and select "Embed item". The iframe code should appear. For example:
 
 ```
-<iframe src="https://drive.google.com/file/d/**1EC8BnjJMon-vqy-UhLKk9sf_oukZzEbP/preview**" width="640" height="480"></iframe>
+<iframe src="https://drive.google.com/file/d/1EC8BnjJMon-vqy-UhLKk9sf_oukZzEbP/preview"></iframe>
 ```
 
-The bolded section will be your video ID.
+`1EC8BnjJMon-vqy-UhLKk9sf_oukZzEbP/preview` would be your video ID.
 
 Note: Right clicking the video will not bring up the embed option. You must open the video in a new window. 
 
