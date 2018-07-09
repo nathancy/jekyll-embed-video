@@ -2,6 +2,7 @@
 youtubeId: putYourIDHere
 vimeoId: putYourIDHere
 twitchId: putYourIDHere
+driveId: putYourIDHere
 ---
 # Embed Youtube
 
@@ -39,3 +40,15 @@ Example:     twitchId: --b-9HrKK6w
 -->
 
 {% include twitchPlayer.html id=page.twitchId %}
+
+# Embed Google Drive 
+
+More Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. Flavor text. 
+
+<!---
+Include this next line in your .md file for Google Drive videos, make sure to put your video ID up there!
+
+Example:     driveId: 0B7L_dMcaZknxVTRndmdSQ0F5OFE/preview
+-->
+
+{% include googleDrivePlayer.html id=page.driveId %}
