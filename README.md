@@ -13,8 +13,8 @@ http://www.nathan-lam.com/projects/jekyll-embed-video
 * [Embed Twitch](#embed-twitch)
 * [Embed Streamable](#embed-streamable)
 * [Embed Mixer](#embed-mixer)
-* [Additional support for 20Detik, Dailymotion, Metube, Vidio, or LINE Today](#additional-support)
 * [Embed Google Drive](#embed-google-drive)
+* [Additional support for 20Detik, Dailymotion, Metube, Vidio, or LINE Today](#additional-support)
 * [Responsive Videos](#responsive-videos)
 * [Iframe Attributes](#iframe-attributes)
 * [Full Example](#full-example)
@@ -373,14 +373,15 @@ Create a file in your `_includes` folder called `linetodayPlayer.html` with this
 Place this snippet inside your .md file where you want to embed your video:
 
 ```
-{% include linetodayPlayer.html id=page.linetodayId %}
+{% include linetodayPlayer.html id=page.linetodayId country=page.countryId %}
 ```
 
-On the top of your .md file, put the LINE Today video ID. You could also put the ID of the video directly.
+On the top of your .md file, put the LINE Today video and country ID. You could also put the IDs directly.
 
 ```
 ---
 linetodayId: abcdefg 
+countryId: hk
 ---
 ```
 
@@ -534,10 +535,11 @@ Example:     vidioId: 1671743
 # Embed LINE Today 
 
 <!---
-Include this next line in your .md file for LINE Today videos, make sure to put your video ID up there!
+Include these next lines in your .md file for LINE Today videos, make sure to put your video and country ID up there!
 
 Example:     linetodayId: abcdefg 
+             countryId: hk
 -->
 
-{% include linetodayPlayer.html id=page.linetodayId %}
+{% include linetodayPlayer.html id=page.linetodayId country=page.countryId %}
 ```

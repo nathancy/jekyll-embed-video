@@ -109,12 +109,13 @@ Example:     vidioId: 1671743
 # Embed LINE Today 
 
 <!---
-Include this next line in your .md file for LINE Today videos, make sure to put your video ID up there!
+Include these next lines in your .md file for LINE Today videos, make sure to put your video and country ID up there!
 
 Example:     linetodayId: abcdefg 
+             countryId: hk
 -->
 
-{% include linetodayPlayer.html id=page.linetodayId %}
+{% include linetodayPlayer.html id=page.linetodayId country=page.countryId %}
 
 
 
