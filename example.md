@@ -65,3 +65,56 @@ Example:     driveId: 0B7L_dMcaZknxVTRndmdSQ0F5OFE/preview
 -->
 
 {% include googleDrivePlayer.html id=page.driveId %}
+
+# Embed 20Detik 
+
+<!---
+Include this next line in your .md file for 20Detik videos, make sure to put your video ID up there!
+
+Example:     detikId: 190130051
+-->
+
+{% include 20detikPlayer.html id=page.detikId %}
+
+# Embed Dailymotion 
+
+<!---
+Include this next line in your .md file for Dailymotion videos, make sure to put your video ID up there!
+
+Example:     dailymotionId: x2btuie
+-->
+
+{% include dailymotionPlayer.html id=page.dailymotionId %}
+
+# Embed Metube 
+
+<!---
+Include this next line in your .md file for Metube videos, make sure to put your video ID up there!
+
+Example:     metubeId: 11107214
+-->
+
+{% include metubePlayer.html id=page.metubeId %}
+
+# Embed Vidio 
+
+<!---
+Include this next line in your .md file for Vidio videos, make sure to put your video ID up there!
+
+Example:     vidioId: 1671743
+-->
+
+{% include vidioPlayer.html id=page.vidioId %}
+
+# Embed LINE Today 
+
+<!---
+Include this next line in your .md file for LINE Today videos, make sure to put your video ID up there!
+
+Example:     linetodayId: abcdefg 
+-->
+
+{% include linetodayPlayer.html id=page.linetodayId %}
+
+
+

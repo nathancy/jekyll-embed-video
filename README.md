@@ -1,7 +1,7 @@
 # jekyll-embed-video
 Embed YouTube, Vimeo, Twitch, Streamable, Mixer, Google Drive videos/clips and more in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
 
-See the raw text in `example.md` for a complete example.
+See the raw text in `example.md` for a complete example. Remember to add in [video-embed.css](https://github.com/nathancy/jekyll-embed-video/blob/master/video-embed.css) for [responsive videos](#responsive-videos) that automatically resize with changing window dimensions. 
 
 ## Demo
 
@@ -13,6 +13,7 @@ http://www.nathan-lam.com/projects/jekyll-embed-video
 * [Embed Twitch](#embed-twitch)
 * [Embed Streamable](#embed-streamable)
 * [Embed Mixer](#embed-mixer)
+* [Additional support for 20Detik, Dailymotion, Metube, Vidio, or LINE Today](#additional-support)
 * [Embed Google Drive](#embed-google-drive)
 * [Responsive Videos](#responsive-videos)
 * [Iframe Attributes](#iframe-attributes)
@@ -221,6 +222,168 @@ driveId: putYourIDHere
 ---
 ```
 
+## Additional support
+## Embed 20Detik
+
+Create a file in your `_includes` folder called `20detikPlayer.html` with this code inside: 
+
+```
+<div class="embed-container">
+  <iframe
+      src="https://20.detik.com/embed/{{ include.id }}"
+      width="700"
+      height="480"
+      frameborder="0"
+      scrolling="no"
+      allowfullscreen="true">
+  </iframe>
+</div>
+```
+
+Place this snippet inside your .md file where you want to embed your video:
+
+```
+{% include 20detikPlayer.html id=page.detikId %}
+```
+
+On the top of your .md file, put the Detik video ID. You could also put the ID of the video directly.
+
+```
+---
+detikId: 190130051
+---
+```
+
+## Embed Dailymotion 
+
+Create a file in your `_includes` folder called `dailymotionPlayer.html` with this code inside: 
+
+```
+<div class="embed-container">
+  <iframe
+      src="https://www.dailymotion.com/embed/video/{{ include.id }}"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen=""
+      allow="autoplay">
+  </iframe>
+</div>
+```
+
+Place this snippet inside your .md file where you want to embed your video:
+
+```
+{% include dailymotionPlayer.html id=page.dailymotionId %}
+```
+
+On the top of your .md file, put the Dailymotion video ID. You could also put the ID of the video directly.
+
+```
+---
+dailymotionId: x2btuie
+---
+```
+
+## Embed Metube 
+
+Create a file in your `_includes` folder called `metubePlayer.html` with this code inside: 
+
+```
+<div class="embed-container">
+  <iframe
+      src="https://www.metube.id/embed/{{ include.id }}"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+```
+
+Place this snippet inside your .md file where you want to embed your video:
+
+```
+{% include metubePlayer.html id=page.metubeId %}
+```
+
+On the top of your .md file, put the Metube video ID. You could also put the ID of the video directly.
+
+```
+---
+metubeId: 11107214
+---
+```
+
+## Embed Vidio 
+
+Create a file in your `_includes` folder called `vidioPlayer.html` with this code inside: 
+
+```
+<div class="embed-container">
+  <iframe
+      src="https://www.vidio.com/embed/{{ include.id }}"
+      width="700"
+      height="480"
+      scrolling="no"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+```
+
+Place this snippet inside your .md file where you want to embed your video:
+
+```
+{% include vidioPlayer.html id=page.vidioId %}
+```
+
+On the top of your .md file, put the Vidio video ID. You could also put the ID of the video directly.
+
+```
+---
+vidioId: 1671743
+---
+```
+
+## Embed LINE Today 
+
+LINE Today contents are served in different countries so another `country` parameter (to be filled with a 2-letter country code) is needed. Here's all the supported country codes (case-insensitive)
+
+* `hk` - Hong Kong
+* `id` - Indonesia
+* `th` - Thailand
+* `tw` - Taiwan
+
+Create a file in your `_includes` folder called `linetodayPlayer.html` with this code inside: 
+
+```
+<div class="embed-container">
+  <iframe
+      src="https://today.line.me/{{ include.country }}/embed/{{ include.id }}"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen=""
+      allow="autoplay; encrypted-media">
+  </iframe>
+</div>
+```
+
+Place this snippet inside your .md file where you want to embed your video:
+
+```
+{% include linetodayPlayer.html id=page.linetodayId %}
+```
+
+On the top of your .md file, put the LINE Today video ID. You could also put the ID of the video directly.
+
+```
+---
+linetodayId: abcdefg 
+---
+```
+
 ## Responsive Videos
 For responsive videos that automatically resize with changing window sizes, add in `video-embed.css`.
 
@@ -327,4 +490,54 @@ Example:     driveId: 0B7L_dMcaZknxVTRndmdSQ0F5OFE/preview
 -->
 
 {% include googleDrivePlayer.html id=page.driveId %}
+
+# Embed 20Detik 
+
+<!---
+Include this next line in your .md file for 20Detik videos, make sure to put your video ID up there!
+
+Example:     detikId: 190130051
+-->
+
+{% include 20detikPlayer.html id=page.detikId %}
+
+# Embed Dailymotion 
+
+<!---
+Include this next line in your .md file for Dailymotion videos, make sure to put your video ID up there!
+
+Example:     dailymotionId: x2btuie
+-->
+
+{% include dailymotionPlayer.html id=page.dailymotionId %}
+
+# Embed Metube 
+
+<!---
+Include this next line in your .md file for Metube videos, make sure to put your video ID up there!
+
+Example:     metubeId: 11107214
+-->
+
+{% include metubePlayer.html id=page.metubeId %}
+
+# Embed Vidio 
+
+<!---
+Include this next line in your .md file for Vidio videos, make sure to put your video ID up there!
+
+Example:     vidioId: 1671743
+-->
+
+{% include vidioPlayer.html id=page.vidioId %}
+
+# Embed LINE Today 
+
+<!---
+Include this next line in your .md file for LINE Today videos, make sure to put your video ID up there!
+
+Example:     linetodayId: abcdefg 
+-->
+
+{% include linetodayPlayer.html id=page.linetodayId %}
 ```
