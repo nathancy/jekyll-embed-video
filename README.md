@@ -14,7 +14,7 @@ http://www.nathan-lam.com/projects/jekyll-embed-video
 * [Embed Streamable](#embed-streamable)
 * [Embed Mixer](#embed-mixer)
 * [Embed Google Drive](#embed-google-drive)
-* [Additional support for 20Detik, Dailymotion, Metube, Vidio, or LINE Today](#additional-support)
+* [Additional support for 20Detik, Dailymotion, Metube, Vidio, and LINE Today](#additional-support)
 * [Responsive Videos](#responsive-videos)
 * [Iframe Attributes](#iframe-attributes)
 * [Full Example](#full-example)
@@ -431,6 +431,13 @@ twitchId: putYourIDHere
 streamableId: putYourIDHere
 mixerId: putYourIDHere
 driveId: putYourIDHere
+
+detikId: putYourIDHere
+dailymotionId: putYourIDHere
+metubeId: putYourIDHere
+vidioId: putYourIDHere
+linetodayId: putYourIDHere
+countryId: putYourIDHere
 ---
 # Embed Youtube
 
