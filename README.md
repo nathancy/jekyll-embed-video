@@ -26,7 +26,11 @@ Create a file in your `_includes` folder called `youtubePlayer.html` with this c
 ```
 <div class="embed-container">
   <iframe
-      src="https://www.youtube.com/embed/{{ include.id }}"
+        {% if include.end %}
+          src="https://www.youtube.com/embed/{{ include.id }}?start={{ include.start }}&end={{ include.end }}"
+          {% else %}
+          src="https://www.youtube.com/embed/{{ include.id }}?start={{ include.start }}"
+          {% endif %}
       width="700"
       height="480"
       frameborder="0"
@@ -38,8 +42,10 @@ Create a file in your `_includes` folder called `youtubePlayer.html` with this c
 Place this snippet inside your .md file where you want to embed your video:
 
 ```
-{% include youtubePlayer.html id=page.youtubeId %}
+{% include youtubePlayer.html id=page.youtubeId start="0" %}
 ```
+
+You can also add `end="n"` to stop the video at `n` seconds in
 
 On the top of your .md file, put the YouTube video ID. You could also put the ID of the video directly.
 
