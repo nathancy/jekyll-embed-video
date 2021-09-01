@@ -72,7 +72,7 @@ Place this snippet inside your .md file where you want to embed your video:
 {% include vimeoPlayer.html id=page.vimeoId %}
 ```
 
-On the top of your .md file, put the Vimeo video ID. You could also put the ID of the video directly.
+On the top of your .md file, put the Vimeo video ID. You could also put the ID of the video directly. Take a look at [accessing and editing embed codes](https://vimeo.zendesk.com/hc/en-us/articles/360000710167-Accessing-and-editing-embed-codes) to find your video's embed code ID.
 
 ```
 ---
@@ -82,8 +82,7 @@ vimeoId: putYourIDHere
 
 ## Embed Twitch 
 
-Embedding Twitch clips requires an additional "Domain" parameter. See the [documentation](https://dev.twitch.tv/docs/embed/video-and-clips/#non-interactive-iframes-for-clips) for more details.
-Create a file in your `_includes` folder called `twitchPlayer.html` with this code inside: 
+Embedding Twitch clips requires an additional "Domain" parameter. Create a file in your `_includes` folder called `twitchPlayer.html` with this code inside: 
 
 ```
 <div class="embed-container">
@@ -112,6 +111,8 @@ twitchId: putYourIDHere
 twitchDomain: putYourDomainHere
 ---
 ```
+
+See the [embedding Twitch clips documentation](https://dev.twitch.tv/docs/embed/video-and-clips/#non-interactive-iframes-for-clips) for more details. 
 
 ## Embed Streamable 
 
@@ -143,10 +144,12 @@ On the top of your .md file, put the Streamable video ID. You could also put the
 streamableId: putYourIDHere
 ---
 ```
+To find your embed video ID use [Streamable's free online tool](https://streamable.com/embed-video)
+
 
 ## Embed Google Drive 
 
-**Recommendation:** Upload your video to [YouTube instead]((#embed-youtube)) since it has better built in video player functionality. 
+**Recommendation:** Upload your video to [YouTube instead](#embed-youtube) since it has better built in video player functionality. 
 
 Embedding Google Drive videos have additional steps. 
 
