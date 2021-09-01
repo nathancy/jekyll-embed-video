@@ -1,5 +1,5 @@
 # jekyll-embed-video
-Embed YouTube, Vimeo, Twitch, Streamable, Mixer, Google Drive videos/clips and more in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
+Embed YouTube, Vimeo, Twitch, Streamable, Google Drive videos/clips and more in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
 
 See the raw text in `example.md` for a complete example. Remember to add in [video-embed.css](https://github.com/nathancy/jekyll-embed-video/blob/master/video-embed.css) for [responsive videos](#responsive-videos) that automatically resize with changing window dimensions. 
 
@@ -12,7 +12,6 @@ http://www.nathan-lam.com/projects/jekyll-embed-video
 * [Embed Vimeo](#embed-vimeo)
 * [Embed Twitch](#embed-twitch)
 * [Embed Streamable](#embed-streamable)
-* [Embed Mixer](#embed-mixer)
 * [Embed Google Drive](#embed-google-drive)
 * [Additional support for 20Detik, Dailymotion, Metube, Vidio, and LINE Today](#additional-support)
 * [Responsive Videos](#responsive-videos)
@@ -83,18 +82,17 @@ vimeoId: putYourIDHere
 
 ## Embed Twitch 
 
+Embedding Twitch clips requires an additional "Domain" parameter. See the [documentation](https://dev.twitch.tv/docs/embed/video-and-clips/#non-interactive-iframes-for-clips) for more details.
 Create a file in your `_includes` folder called `twitchPlayer.html` with this code inside: 
 
 ```
 <div class="embed-container">
   <iframe
-      src="https://clips.twitch.tv/embed?clip={{ include.id }}"
+      src="https://clips.twitch.tv/embed?clip={{ include.id }}&parent={{ include.domain }}"
       height="360"
       width="640"
       frameborder="0"
       scrolling="no"
-      muted="false"
-      autoplay="false"
       allowfullscreen="true">
   </iframe>
 </div>
@@ -103,14 +101,15 @@ Create a file in your `_includes` folder called `twitchPlayer.html` with this co
 Place this snippet inside your .md file where you want to embed your video:
 
 ```
-{% include twitchPlayer.html id=page.twitchId %}
+{% include twitchPlayer.html id=page.twitchId domain=page.twitchDomain %}
 ```
 
-On the top of your .md file, put the Twitch video ID. You could also put the ID of the video directly.
+On the top of your .md file, put the Twitch video ID and domain name. You could also put the ID of the video directly.
 
 ```
 ---
 twitchId: putYourIDHere
+twitchDomain: putYourDomainHere
 ---
 ```
 
@@ -145,38 +144,9 @@ streamableId: putYourIDHere
 ---
 ```
 
-## Embed Mixer 
-
-Create a file in your `_includes` folder called `mixerPlayer.html` with this code inside: 
-
-```
-<div class="embed-container">
-  <iframe
-      src="https://mixer.com/embed/player/mixer?vod={{ include.id }}"
-      height="360"
-      width="640"
-      frameborder="0"
-      scrolling="no"
-      allowfullscreen="true">
-  </iframe>
-</div>
-```
-
-Place this snippet inside your .md file where you want to embed your video:
-
-```
-{% include mixerPlayer.html id=page.mixerId %}
-```
-
-On the top of your .md file, put the Mixer video ID. You could also put the ID of the video directly.
-
-```
----
-mixerId: putYourIDHere
----
-```
-
 ## Embed Google Drive 
+
+**Recommendation:** Upload your video to [YouTube instead]((#embed-youtube)) since it has better built in video player functionality. 
 
 Embedding Google Drive videos have additional steps. 
 
@@ -428,8 +398,8 @@ These attributes are defined in the [MDN web docs](https://developer.mozilla.org
 youtubeId: putYourIDHere
 vimeoId: putYourIDHere
 twitchId: putYourIDHere
+twitchDomain: putYourDomainHere
 streamableId: putYourIDHere
-mixerId: putYourIDHere
 driveId: putYourIDHere
 detikId: putYourIDHere
 dailymotionId: putYourIDHere
@@ -461,12 +431,13 @@ Example:     vimeoID: 22439234
 # Embed Twitch
 
 <!---
-Include this next line in your .md file for Twitch videos, make sure to put your video ID up there!
+Include this next line in your .md file for Twitch videos, make sure to put your video ID and domain up there!
 
 Example:     twitchId: GrotesqueArbitraryGullPupper
+             twitchDomain: www.nathan-lam.com
 -->
 
-{% include twitchPlayer.html id=page.twitchId %}
+{% include twitchPlayer.html id=page.twitchId domain=page.twitchDomain %}
 
 # Embed Streamable 
 
@@ -477,16 +448,6 @@ Example:     streamableId: s9ijg
 -->
 
 {% include streamablePlayer.html id=page.streamableId %}
-
-# Embed Mixer 
-
-<!---
-Include this next line in your .md file for Mixer videos, make sure to put your video ID up there!
-
-Example:     mixerId: -Q8g7gGquEqxTNAGaz14qA
--->
-
-{% include mixerPlayer.html id=page.mixerId %}
 
 # Embed Google Drive
 
