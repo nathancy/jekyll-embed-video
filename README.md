@@ -387,16 +387,16 @@ For responsive videos that automatically resize with changing window sizes, add 
 
 These attributes are defined in the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe). You can set various additional attributes no matter what provider you use.
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `allowfullscreen` | boolean | If `true`, the player can go full screen. |
-| `height` | integer | Height of the embedded window, in pixels. |
-| `width` | integer | Width of the embedded window, in pixels. |
-| `scrolling` | boolean | Indicates when the browser should provide a scroll bar (or other scrolling device) for the frame. Recommended: `no`. |
-| `src` | string | The video/clip source URL link |
-| `autoplay` | boolean | If `true`, the video starts playing automatically, without the user clicking play. The exception is mobile devices, on which video cannot be played without user interaction. Default: `true`. |
-| `muted` | boolean | Specifies whether the initial state of the video is muted. Default: `false`. |
-| `time` | 1h2m3s | Time in the video where playback starts. Specifies hours, minutes, and seconds. Default: 0h0m0s (the start of the video). |
+Name              | Type    | Description
+:---------------- | :------ | :----------
+`allowfullscreen` | boolean | If `true`, the player can go full screen.
+`height`          | integer | Height of the embedded window, in pixels.
+`width`           | integer | Width of the embedded window, in pixels.
+`scrolling`       | boolean | Indicates when the browser should provide a scroll bar (or other scrolling device) for the frame. Recommended: `no`.
+`src`             | string  | The video/clip source URL link.
+`autoplay`        | boolean | If `true`, the video starts playing automatically, without the user clicking play. The exception is mobile devices, on which video cannot be played without user interaction. Default: `true`.
+`muted`           | boolean | Specifies whether the initial state of the video is muted. Default: `false`.
+`time`            | 1h2m3s  | Time in the video where playback starts. Specifies hours, minutes, and seconds. Default: 0h0m0s (the start of the video).
 
 ## Full example
 
