@@ -15,7 +15,7 @@ See the raw text in `example.md` for a complete example. Remember to add in [vid
 * [Embed Twitch](#embed-twitch)
 * [Embed Streamable](#embed-streamable)
 * [Embed Google Drive](#embed-google-drive)
-* [Additional support for 20Detik, Dailymotion, Metube, Vidio, and LINE Today](#additional-support)
+* [Additional support for 20Detik, Dailymotion, Vidio, and LINE Today](#additional-support)
 * [Responsive Videos](#responsive-videos)
 * [Iframe Attributes](#iframe-attributes)
 * [Full Example](#full-example)
@@ -261,36 +261,6 @@ dailymotionId: x2btuie
 ---
 ```
 
-### Embed Metube
-
-Create a file in your `_includes` folder called `metubePlayer.html` with this code inside:
-
-```html
-<div class="embed-container">
-  <iframe
-      src="https://www.metube.id/embed/{{ include.id }}"
-      width="700"
-      height="480"
-      frameborder="0"
-      allowfullscreen="">
-  </iframe>
-</div>
-```
-
-Place this snippet inside your .md file where you want to embed your video:
-
-```liquid
-{% include metubePlayer.html id=page.metubeId %}
-```
-
-On the top of your .md file, put the Metube video ID. You could also put the ID of the video directly.
-
-```yaml
----
-metubeId: 11107214
----
-```
-
 ### Embed Vidio
 
 Create a file in your `_includes` folder called `vidioPlayer.html` with this code inside:
@@ -410,7 +380,6 @@ streamableId: putYourIDHere
 driveId: putYourIDHere
 detikId: putYourIDHere
 dailymotionId: putYourIDHere
-metubeId: putYourIDHere
 vidioId: putYourIDHere
 linetodayId: putYourIDHere
 countryId: putYourIDHere
@@ -485,16 +454,6 @@ Example:     dailymotionId: x2btuie
 -->
 
 {% include dailymotionPlayer.html id=page.dailymotionId %}
-
-# Embed Metube 
-
-<!---
-Include this next line in your .md file for Metube videos, make sure to put your video ID up there!
-
-Example:     metubeId: 11107214
--->
-
-{% include metubePlayer.html id=page.metubeId %}
 
 # Embed Vidio 
 
