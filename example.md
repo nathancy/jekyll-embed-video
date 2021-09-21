@@ -1,10 +1,9 @@
 ---
-title: "Full Example"
 youtubeId: putYourIDHere
 vimeoId: putYourIDHere
 twitchId: putYourIDHere
+twitchDomain: putYourDomainHere
 streamableId: putYourIDHere
-mixerId: putYourIDHere
 driveId: putYourIDHere
 detikId: putYourIDHere
 dailymotionId: putYourIDHere
