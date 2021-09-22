@@ -1,0 +1,17 @@
+<!-- Used to embed Facebook videos -->
+<!-- NOTE: Facebook requires you to import their script, probably for tracking. Who knows. 
+           Make sure you're okay with doing this otherwise don't use this method! 
+           Also note, we don't use the CSS container which we used for other providers such as
+           Youtube since FB handles it on their own -->
+
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+
+<!-- Your embedded video player code -->
+<div 
+    class="fb-video" 
+    data-href="https://www.facebook.com/watch/?v={{ include.id }}"
+    data-width="auto" 
+    data-allowfullscreen="false">
+</div>

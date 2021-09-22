@@ -1,6 +1,6 @@
 # jekyll-embed-video
 
-Embed YouTube, Vimeo, Twitch, Streamable, Google Drive videos/clips and more in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
+Embed YouTube, Vimeo, Twitch, Facebook, Streamable, Google Drive videos/clips and more in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
 
 See the raw text in `example.md` for a complete example. Remember to add in [video-embed.css](https://github.com/nathancy/jekyll-embed-video/blob/master/video-embed.css) for [responsive videos](#responsive-videos) that automatically resize with changing window dimensions.
 
@@ -13,6 +13,7 @@ See the raw text in `example.md` for a complete example. Remember to add in [vid
 * [Embed YouTube](#embed-youtube)
 * [Embed Vimeo](#embed-vimeo)
 * [Embed Twitch](#embed-twitch)
+* [Embed Facebook](#embed-facebook)
 * [Embed Streamable](#embed-streamable)
 * [Embed Google Drive](#embed-google-drive)
 * [Additional support for 20Detik, Dailymotion, Vidio, and LINE Today](#additional-support)
@@ -115,6 +116,78 @@ twitchDomain: putYourDomainHere
 ```
 
 See the [embedding Twitch clips documentation](https://dev.twitch.tv/docs/embed/video-and-clips/#non-interactive-iframes-for-clips) for more details.
+
+## Embed Facebook
+
+There are two types of Facebook videos/clips that you can embed: videos from the facebook feed using `<iframe>` or the newer Facebook Watch clips using the JavaScript SDK. 
+
+#### Standard Facebook feed videos
+
+The raw `<iframe>` method works but is buggy since its non-standard and rips out the tracking they do. This method may be preferred if you absolutely don't want Facebook to have any tracking. The raw version works but it is very buggy. There's also no easy to way extract the video ID, it's very ugly. 
+
+Click the video until it's fullscreen which will give you the option to press the `...` settings button. Next click on `Embed`. This will open up a dialog which will show you the `<iframe>` video code.
+
+**Note:** If you don't fullscreen the video, it will not give you the `Embed` option.
+
+Here's an example of what the non-standard `<iframe>` may look like:
+
+```html
+<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Falmost.co%2Fvideos%2F986032852221964%2F&width=500&show_text=false&height=500&appId" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+```
+
+Instead of using a template, it may be better to manually insert the code. For this method, you would simply copy/paste that code similar to all the other `_include` files. Due to the difficulty, hassle, and weird embed behavior, there will no example of this method here. The recommendation is to use the newer Facebook Watch clips method.
+
+#### Facebook Watch clips
+
+**Very Important**: The newer Facebook Watch clips method requires you to import a JavaScript SDK script which very very likely does some tracking in the background but automatically handles video resizing and has smooth playback using their own CSS. If you are not okay with this then you would have to use the non-standard version.
+
+Facebook pushed out their Watch feature on [https://www.facebook.com/watch](https://www.facebook.com/watch). This method can be used to embed any video from there. First choose a video you want to embed, then click on `Share` -> `Embed` -> `Advanced Settings`. This will open a new link. In the "Embedded Video Player Configurator", there will be a "URL of video" section which may look something like this:
+
+```
+https://www.facebook.com/pokergo/videos/1243061482783766/
+```
+
+If you already know the link of the specific video, the URL would look like this:
+
+```
+https://www.facebook.com/watch/?v=1243061482783766
+```
+
+In both of these cases, the video ID would be `1243061482783766`. 
+
+Next create a file in your `_includes` folder called `facebookPlayer.html` with this code inside:
+
+```html
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+
+<!-- Your embedded video player code -->
+<div 
+    class="fb-video" 
+    data-href="https://www.facebook.com/watch/?v={{ include.id }}"
+    data-width="auto" 
+    data-allowfullscreen="false">
+</div>
+```
+
+**Note:** This is a ripped out version of the original JavaScript SDK code that Facebook provides which removes many unnecessary additions. If you want the original, click on `Get Code` on the advanced settings page. 
+
+Place this snippet inside your .md file where you want to embed your video:
+
+```liquid
+{% include facebookPlayer.html id=page.facebookId %}
+```
+
+On the top of your .md file, put the Facebook video ID. You could also put the ID of the video directly.
+
+```yaml
+---
+facebookId: 1243061482783766 
+---
+```
+
+Facebook uses their own video parameters, for more information take a look at the [Embedded Video & Live Video Player](https://developers.facebook.com/docs/plugins/embedded-video-player/) documentation.
 
 ## Embed Streamable
 
@@ -376,6 +449,7 @@ youtubeId: putYourIDHere
 vimeoId: putYourIDHere
 twitchId: putYourIDHere
 twitchDomain: putYourDomainHere
+facebookId: putYourIDHere
 streamableId: putYourIDHere
 driveId: putYourIDHere
 detikId: putYourIDHere
@@ -415,6 +489,16 @@ Example:     twitchId: GrotesqueArbitraryGullPupper
 -->
 
 {% include twitchPlayer.html id=page.twitchId domain=page.twitchDomain %}
+
+## Embed Facebook
+
+<!---
+Include this next line in your .md file for Facebook videos, make sure to put your video ID up there!
+
+Example:     facebookId: 1243061482783766 
+-->
+
+{% include facebookPlayer.html id=page.facebookId %}
 
 ## Embed Streamable
 

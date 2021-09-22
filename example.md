@@ -3,6 +3,7 @@ youtubeId: putYourIDHere
 vimeoId: putYourIDHere
 twitchId: putYourIDHere
 twitchDomain: putYourDomainHere
+facebookId: putYourIDHere
 streamableId: putYourIDHere
 driveId: putYourIDHere
 detikId: putYourIDHere
@@ -35,12 +36,23 @@ Example:     vimeoID: 22439234
 ## Embed Twitch
 
 <!---
-Include this next line in your .md file for Twitch videos, make sure to put your video ID up there!
+Include this next line in your .md file for Twitch videos, make sure to put your video ID and domain up there!
 
 Example:     twitchId: GrotesqueArbitraryGullPupper
+             twitchDomain: www.nathan-lam.com
 -->
 
-{% include twitchPlayer.html id=page.twitchId %}
+{% include twitchPlayer.html id=page.twitchId domain=page.twitchDomain %}
+
+## Embed Facebook
+
+<!---
+Include this next line in your .md file for Facebook videos, make sure to put your video ID up there!
+
+Example:     facebookId: 1243061482783766 
+-->
+
+{% include facebookPlayer.html id=page.facebookId %}
 
 ## Embed Streamable
 
