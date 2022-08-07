@@ -1,6 +1,6 @@
 # jekyll-embed-video
 
-Embed YouTube, Vimeo, Twitch, Facebook, Streamable, Google Drive videos/clips and more in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
+Embed YouTube, Vimeo, Twitch, Facebook, Twitter, Streamable, Google Drive videos/clips and more in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
 
 See the raw text in `example.md` for a complete example. Remember to add in [video-embed.css](https://github.com/nathancy/jekyll-embed-video/blob/master/video-embed.css) for [responsive videos](#responsive-videos) that automatically resize with changing window dimensions.
 
@@ -14,6 +14,7 @@ See the raw text in `example.md` for a complete example. Remember to add in [vid
 * [Embed Vimeo](#embed-vimeo)
 * [Embed Twitch](#embed-twitch)
 * [Embed Facebook](#embed-facebook)
+* [Embed Twitter](#embed-twitter)
 * [Embed Streamable](#embed-streamable)
 * [Embed Google Drive](#embed-google-drive)
 * [Additional support for 20Detik, Dailymotion, Vidio, and LINE Today](#additional-support)
@@ -85,7 +86,7 @@ vimeoId: putYourIDHere
 
 ## Embed Twitch
 
-Embedding Twitch clips requires an additional "Domain" parameter. Create a file in your `_includes` folder called `twitchPlayer.html` with this code inside:
+Embedding Twitch clips requires an additional "Domain" parameter. This is simply your website URL. Create a file in your `_includes` folder called `twitchPlayer.html` with this code inside:
 
 ```html
 <div class="embed-container">
@@ -114,6 +115,8 @@ twitchId: putYourIDHere
 twitchDomain: putYourDomainHere
 ---
 ```
+
+*Note*: If you are running your local website off `localhost:4000`, you may get a `clips.twitch.tv refused to connect` error. But as long as your "domain" is set correctly, it should properly display on the live production site. 
 
 See the [embedding Twitch clips documentation](https://dev.twitch.tv/docs/embed/video-and-clips/#non-interactive-iframes-for-clips) for more details.
 
@@ -158,6 +161,11 @@ In both of these cases, the video ID would be `1243061482783766`.
 Next create a file in your `_includes` folder called `facebookPlayer.html` with this code inside:
 
 ```html
+<!-- NOTE: Facebook requires you to import their script, probably for tracking. Who knows. 
+           Make sure you're okay with doing this otherwise don't use this method! 
+           Also note, we don't use the CSS container which we used for other providers such as
+           Youtube since FB handles it on their own -->
+
 <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
@@ -188,6 +196,46 @@ facebookId: 1243061482783766
 ```
 
 Facebook uses their own video parameters, for more information take a look at the [Embedded Video & Live Video Player](https://developers.facebook.com/docs/plugins/embedded-video-player/) documentation.
+
+## Embed Twitter
+
+If your desired video/post URL to embed is for example
+
+```
+https://twitter.com/SJosephBurns/status/1555282591665848320
+```
+
+Then your video ID would be `SJosephBurns/status/1555282591665848320`.
+
+Next create a file in your `_includes` folder called `twitterPlayer.html` with this code inside:
+
+```html
+<!-- NOTE: Twitter requires you to import their script. Also note, we don't 
+           use the custom CSS container which we used for other providers such as
+           Youtube since Twitter handles it on their own -->
+
+<blockquote class="twitter-tweet">
+  <a href="https://twitter.com/{{ include.id }}"></a>
+</blockquote> 
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+```
+
+Place this snippet inside your .md file where you want to embed your video:
+
+```liquid
+{% include twitterPlayer.html id=page.twitterId %}
+```
+
+On the top of your .md file, put the Twitter video/post ID. You could also put the ID of the source directly.
+
+```yaml
+---
+twitterId: putYourIDHere
+---
+```
+
+*Note*: This is a stripped down barebones embed method which strips down unnecessary code and should work for both videos and regular Twitter text posts. For [full customization options](https://publish.twitter.com/#) you can use Twitter's embed generator to set color themes, default language, conversation toggles and much more. 
 
 ## Embed Streamable
 
@@ -450,6 +498,7 @@ vimeoId: putYourIDHere
 twitchId: putYourIDHere
 twitchDomain: putYourDomainHere
 facebookId: putYourIDHere
+twitterId: putYourIDHere
 streamableId: putYourIDHere
 driveId: putYourIDHere
 detikId: putYourIDHere
@@ -499,6 +548,16 @@ Example:     facebookId: 1243061482783766
 -->
 
 {% include facebookPlayer.html id=page.facebookId %}
+
+## Embed Twitter
+
+<!---
+Include this next line in your .md file for Twitter videos/posts, make sure to put your video ID up there!
+
+Example:     twitterId: SJosephBurns/status/1555282591665848320 
+-->
+
+{% include twitterPlayer.html id=page.twitterId %}
 
 ## Embed Streamable
 
@@ -561,3 +620,7 @@ Example:     linetodayId: abcdefg
 
 {% include linetodayPlayer.html id=page.linetodayId country=page.countryId %}
 ```
+
+## Contributing 
+
+Feel free to open an issue or pull request ticket if any of the existing video embed methods break or if there are any other requests to support new video stream providers
