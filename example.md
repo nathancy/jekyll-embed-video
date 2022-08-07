@@ -4,6 +4,9 @@ vimeoId: putYourIDHere
 twitchId: putYourIDHere
 twitchDomain: putYourDomainHere
 facebookId: putYourIDHere
+instagramId: putYourIDhere
+twitterId: putYourIDHere
+tiktokId: putYourIDHere
 streamableId: putYourIDHere
 driveId: putYourIDHere
 detikId: putYourIDHere
@@ -53,6 +56,36 @@ Example:     facebookId: 1243061482783766
 -->
 
 {% include facebookPlayer.html id=page.facebookId %}
+
+## Embed Instagram
+
+<!---
+Include this next line in your .md file for Instagram videos/reels/posts, make sure to put your video ID up there!
+
+Example:     instagramId: CgdzCoMoUBJ 
+-->
+
+{% include instagramPlayer.html id=page.instagramId %}
+
+## Embed Twitter
+
+<!---
+Include this next line in your .md file for Twitter videos/posts, make sure to put your video ID up there!
+
+Example:     twitterId: SJosephBurns/status/1555282591665848320 
+-->
+
+{% include twitterPlayer.html id=page.twitterId %}
+
+## Embed TikTok
+
+<!---
+Include this next line in your .md file for TikTok videos, make sure to put your video ID up there!
+
+Example:     tiktokId: 7101489125244652806 
+-->
+
+{% include tiktokPlayer.html id=page.tiktokId %}
 
 ## Embed Streamable
 
