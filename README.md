@@ -1,6 +1,6 @@
 # jekyll-embed-video
 
-Embed YouTube, Vimeo, Twitch, Facebook, Instagram, Twitter, Streamable, Google Drive videos/clips and more in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
+Embed YouTube, Vimeo, Twitch, Facebook, Instagram, Twitter, TikTok, Streamable, Google Drive videos/clips and more in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
 
 See the raw text in `example.md` for a complete example. Remember to add in [video-embed.css](https://github.com/nathancy/jekyll-embed-video/blob/master/video-embed.css) for [responsive videos](#responsive-videos) that automatically resize with changing window dimensions.
 
@@ -16,6 +16,7 @@ See the raw text in `example.md` for a complete example. Remember to add in [vid
 * [Embed Facebook](#embed-facebook)
 * [Embed Instagram](#embed-instagram)
 * [Embed Twitter](#embed-twitter)
+* [Embed TikTok](#embed-tiktok)
 * [Embed Streamable](#embed-streamable)
 * [Embed Google Drive](#embed-google-drive)
 * [Additional support for 20Detik, Dailymotion, Vidio, and LINE Today](#additional-support)
@@ -306,6 +307,49 @@ twitterId: putYourIDHere
 
 **Note**: This is a stripped down barebones embed method which removes unnecessary code and should work for both videos and regular Twitter text posts. For [full customization options](https://publish.twitter.com/#) you can use Twitter's embed generator to set color themes, default language, conversation toggles and much more. 
 
+## Embed TikTok
+
+To find the TikTok video ID, click on the desired video to embed. You will get a URL like this:
+
+```
+https://www.tiktok.com/@honeycutepet/video/7032659446199274757?lang=en
+```
+
+The TikTok ID would be `7032659446199274757`
+
+Next create a file in your `_includes` folder called `tiktokPlayer.html` with this code inside:
+
+```html
+<!-- NOTE: TikTok requires you to import their script. Also note, we don't 
+           use the custom CSS container which we used for other providers such as
+           Youtube since TikTok handles it on their own -->
+
+<blockquote 
+  class="tiktok-embed" 
+  data-video-id="{{ include.id }}"
+  style="border-left: 0px; padding-left: 0px;"> 
+  <a href="https://www.tiktok.com/"></a> 
+</blockquote>
+
+<script async src="https://www.tiktok.com/embed.js"></script>
+```
+
+Place this snippet inside your .md file where you want to embed your tweet:
+
+```liquid
+{% include tiktokPlayer.html id=page.tiktokId %}
+```
+
+On the top of your .md file, put the TikTok video ID. You could also put the ID of the source directly.
+
+```yaml
+---
+tiktokId: putYourIDHere
+---
+```
+
+**Note**: This is a stripped down barebones embed method which removes unnecessary code. 
+
 ## Embed Streamable
 
 To find the Streamable video ID, click on the desired video to embed. You will get a URL like this:
@@ -577,6 +621,7 @@ twitchDomain: putYourDomainHere
 facebookId: putYourIDHere
 instagramId: putYourIDhere
 twitterId: putYourIDHere
+tiktokId: putYourIDHere
 streamableId: putYourIDHere
 driveId: putYourIDHere
 detikId: putYourIDHere
@@ -646,6 +691,16 @@ Example:     twitterId: SJosephBurns/status/1555282591665848320
 -->
 
 {% include twitterPlayer.html id=page.twitterId %}
+
+## Embed TikTok
+
+<!---
+Include this next line in your .md file for TikTok videos, make sure to put your video ID up there!
+
+Example:     tiktokId: 7101489125244652806 
+-->
+
+{% include tiktokPlayer.html id=page.tiktokId %}
 
 ## Embed Streamable
 
