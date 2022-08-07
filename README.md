@@ -25,7 +25,15 @@ See the raw text in `example.md` for a complete example. Remember to add in [vid
 
 ## Embed YouTube
 
-Create a file in your `_includes` folder called `youtubePlayer.html` with this code inside:
+To find the YouTube video ID, click on the desired video to embed. You will get a URL like this:
+
+```
+https://www.youtube.com/watch?v=lDi9uFcD7XI
+```
+
+The YouTube video ID would be `lDi9uFcD7XI`
+
+Next create a file in your `_includes` folder called `youtubePlayer.html` with this code inside:
 
 ```html
 <div class="embed-container">
@@ -34,7 +42,7 @@ Create a file in your `_includes` folder called `youtubePlayer.html` with this c
       width="700"
       height="480"
       frameborder="0"
-      allowfullscreen="">
+      allowfullscreen="true">
   </iframe>
 </div>
 ```
@@ -55,14 +63,22 @@ youtubeId: putYourIDHere
 
 ## Embed Vimeo
 
-Create a file in your `_includes` folder called `vimeoPlayer.html` with this code inside:
+To find the Vimeo video ID, click on the desired video to embed. You will get a URL like this:
+
+```
+https://vimeo.com/22439234
+```
+
+The Vimeo video ID would be `22439234`
+
+Next create a file in your `_includes` folder called `vimeoPlayer.html` with this code inside:
 
 ```html
 <div class="embed-container">
   <iframe
       src="https://player.vimeo.com/video/{{ include.id }}"
-      width="500"
-      height="281"
+      width="700"
+      height="480"
       frameborder="0"
       webkitallowfullscreen
       mozallowfullscreen
@@ -87,14 +103,22 @@ vimeoId: putYourIDHere
 
 ## Embed Twitch
 
-Embedding Twitch clips requires an additional "Domain" parameter. This is simply your website URL. Create a file in your `_includes` folder called `twitchPlayer.html` with this code inside:
+To find the Twitch video ID, click on the desired clip to embed. You will get a URL like this:
+
+```
+https://clips.twitch.tv/StylishChillyTubersDancingBaby
+```
+
+The Twitch video ID would be `StylishChillyTubersDancingBaby`
+
+Embedding Twitch clips requires an additional "domain" parameter. This is simply your website URL. Create a file in your `_includes` folder called `twitchPlayer.html` with this code inside:
 
 ```html
 <div class="embed-container">
   <iframe
       src="https://clips.twitch.tv/embed?clip={{ include.id }}&parent={{ include.domain }}"
-      height="360"
-      width="640"
+      width="700"
+      height="480"
       frameborder="0"
       scrolling="no"
       allowfullscreen="true">
@@ -117,7 +141,7 @@ twitchDomain: putYourDomainHere
 ---
 ```
 
-**Note**: If you are running your local website off `localhost:4000`, you may get a `clips.twitch.tv refused to connect` error. But as long as your "domain" is set correctly, it should properly display on the live production site. 
+**Note**: If you are running your website on a `localhost` server, you may get a `clips.twitch.tv refused to connect` error. But as long as your "domain" is set correctly, it should properly display on the live production site. 
 
 See the [embedding Twitch clips documentation](https://dev.twitch.tv/docs/embed/video-and-clips/#non-interactive-iframes-for-clips) for more details.
 
@@ -175,12 +199,14 @@ Next create a file in your `_includes` folder called `facebookPlayer.html` with 
 <div 
     class="fb-video" 
     data-href="https://www.facebook.com/watch/?v={{ include.id }}"
-    data-width="auto" 
-    data-allowfullscreen="false">
+    data-width="auto"
+    width="700" 
+    height="480"
+    data-allowfullscreen="true">
 </div>
 ```
 
-**Note:** This is a ripped out version of the original JavaScript SDK code that Facebook provides which removes many unnecessary additions. If you want the original, click on `Get Code` on the advanced settings page. 
+**Note:** This is a ripped out version of the original JavaScript SDK code that Facebook provides which removes many unnecessary additions. If you want the original, click `Get Code` on the advanced settings page. 
 
 Place this snippet inside your .md file where you want to embed your video:
 
@@ -200,13 +226,13 @@ Facebook uses their own video parameters, for more information take a look at th
 
 ## Embed Instagram
 
-To obtain your video/post ID, click on your desired post to embed and you will get a URL that looks something like this:
+To find the Instagram video/reel/post ID, click on the desired post to embed. You will get a URL like this:
 
 ```
 https://www.instagram.com/p/CgdzCoMoUBJ/
 ```
 
-Your video ID would be `CgdzCoMoUBJ`.
+The Instagram ID would be `CgdzCoMoUBJ`
 
 Next create a file in your `_includes` folder called `instagramPlayer.html` with this code inside:
 
@@ -238,17 +264,17 @@ instagramId: putYourIDHere
 ---
 ```
 
-**Note**: This is an extremely stripped down version of the built-in Instagram embed link they automatically generate when you click the `•••` then `Embed` on a post. Any tracking/information they tried to mine has been attempted to be removed as much as possible. As far as I can tell, there was been no effect on the embed behavior after removing them. Also be aware that you must include the Instagram JavaScript for embedding to work.
+**Note**: This is an extremely stripped down version of the built-in Instagram embed link they automatically generate when you click the `•••` then `Embed` on a post. Any tracking/information they tried to harvest has been attempted to be removed as much as possible without affecting the embed behavior. Also be aware that you must include the Instagram JavaScript for embedding to work. This may have some spooky tracking unfortunately. 
 
 ## Embed Twitter
 
-If your desired video/post URL to embed is for example
+To find the Twitter video/post ID, click on the desired tweet to embed. You will get a URL like this:
 
 ```
 https://twitter.com/SJosephBurns/status/1555282591665848320
 ```
 
-Then your video ID would be `SJosephBurns/status/1555282591665848320`.
+The Twitter tweet ID would be `SJosephBurns/status/1555282591665848320`
 
 Next create a file in your `_includes` folder called `twitterPlayer.html` with this code inside:
 
@@ -264,13 +290,13 @@ Next create a file in your `_includes` folder called `twitterPlayer.html` with t
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 ```
 
-Place this snippet inside your .md file where you want to embed your video:
+Place this snippet inside your .md file where you want to embed your tweet:
 
 ```liquid
 {% include twitterPlayer.html id=page.twitterId %}
 ```
 
-On the top of your .md file, put the Twitter video/post ID. You could also put the ID of the source directly.
+On the top of your .md file, put the Twitter tweet ID. You could also put the ID of the source directly.
 
 ```yaml
 ---
@@ -278,18 +304,26 @@ twitterId: putYourIDHere
 ---
 ```
 
-**Note**: This is a stripped down barebones embed method which strips down unnecessary code and should work for both videos and regular Twitter text posts. For [full customization options](https://publish.twitter.com/#) you can use Twitter's embed generator to set color themes, default language, conversation toggles and much more. 
+**Note**: This is a stripped down barebones embed method which removes unnecessary code and should work for both videos and regular Twitter text posts. For [full customization options](https://publish.twitter.com/#) you can use Twitter's embed generator to set color themes, default language, conversation toggles and much more. 
 
 ## Embed Streamable
 
-Create a file in your `_includes` folder called `streamablePlayer.html` with this code inside:
+To find the Streamable video ID, click on the desired video to embed. You will get a URL like this:
+
+```
+https://streamable.com/s9ijg
+```
+
+The Streamable video ID would be `s9ijg`
+
+Next create a file in your `_includes` folder called `streamablePlayer.html` with this code inside:
 
 ```html
 <div class="embed-container">
   <iframe
       src="https://streamable.com/s/{{ include.id }}"
-      height="360"
-      width="640"
+      width="700"
+      height="480"
       frameborder="0"
       scrolling="no"
       allowfullscreen="true">
@@ -311,11 +345,11 @@ streamableId: putYourIDHere
 ---
 ```
 
-To find your embed video ID use [Streamable's free online tool](https://streamable.com/embed-video)
+You could also find the embed video ID with [Streamable's free online tool](https://streamable.com/embed-video)
 
 ## Embed Google Drive
 
-**Recommendation:** Upload your video to [YouTube instead](#embed-youtube) since it has better built in video player functionality.
+**Recommendation:** Upload your video to YouTube instead and use the [embed YouTube method](#embed-youtube) since it has better built in video player functionality.
 
 Embedding Google Drive videos have additional steps.
 
@@ -338,11 +372,11 @@ Create a file in your `_includes` folder called `googleDrivePlayer.html` with th
 ```html
 <div class="embed-container">
   <iframe
-      width="640"
+      width="700"
       height="480"
       src="https://drive.google.com/file/d/{{ include.id }}"
       frameborder="0"
-      allowfullscreen="">
+      allowfullscreen="true">
   </iframe>
 </div>
 ```
@@ -437,7 +471,7 @@ Create a file in your `_includes` folder called `vidioPlayer.html` with this cod
       height="480"
       scrolling="no"
       frameborder="0"
-      allowfullscreen="">
+      allowfullscreen="true">
   </iframe>
 </div>
 ```
@@ -474,7 +508,7 @@ Create a file in your `_includes` folder called `linetodayPlayer.html` with this
       width="700"
       height="480"
       frameborder="0"
-      allowfullscreen=""
+      allowfullscreen="true"
       allow="autoplay; encrypted-media">
   </iframe>
 </div>
