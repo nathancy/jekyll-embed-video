@@ -1,6 +1,6 @@
 # jekyll-embed-video
 
-Embed YouTube, Vimeo, Twitch, Facebook, Twitter, Streamable, Google Drive videos/clips and more in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
+Embed YouTube, Vimeo, Twitch, Facebook, Instagram, Twitter, Streamable, Google Drive videos/clips and more in Jekyll webpages without a plugin. If you are hosting your webpage using GitHub pages, you can't use third party plugins. Here is a method to use "includes" instead of plugins.
 
 See the raw text in `example.md` for a complete example. Remember to add in [video-embed.css](https://github.com/nathancy/jekyll-embed-video/blob/master/video-embed.css) for [responsive videos](#responsive-videos) that automatically resize with changing window dimensions.
 
@@ -14,6 +14,7 @@ See the raw text in `example.md` for a complete example. Remember to add in [vid
 * [Embed Vimeo](#embed-vimeo)
 * [Embed Twitch](#embed-twitch)
 * [Embed Facebook](#embed-facebook)
+* [Embed Instagram](#embed-instagram)
 * [Embed Twitter](#embed-twitter)
 * [Embed Streamable](#embed-streamable)
 * [Embed Google Drive](#embed-google-drive)
@@ -116,7 +117,7 @@ twitchDomain: putYourDomainHere
 ---
 ```
 
-*Note*: If you are running your local website off `localhost:4000`, you may get a `clips.twitch.tv refused to connect` error. But as long as your "domain" is set correctly, it should properly display on the live production site. 
+**Note**: If you are running your local website off `localhost:4000`, you may get a `clips.twitch.tv refused to connect` error. But as long as your "domain" is set correctly, it should properly display on the live production site. 
 
 See the [embedding Twitch clips documentation](https://dev.twitch.tv/docs/embed/video-and-clips/#non-interactive-iframes-for-clips) for more details.
 
@@ -197,6 +198,48 @@ facebookId: 1243061482783766
 
 Facebook uses their own video parameters, for more information take a look at the [Embedded Video & Live Video Player](https://developers.facebook.com/docs/plugins/embedded-video-player/) documentation.
 
+## Embed Instagram
+
+To obtain your video/post ID, click on your desired post to embed and you will get a URL that looks something like this:
+
+```
+https://www.instagram.com/p/CgdzCoMoUBJ/
+```
+
+Your video ID would be `CgdzCoMoUBJ`.
+
+Next create a file in your `_includes` folder called `instagramPlayer.html` with this code inside:
+
+```html
+<!-- NOTE: Instagram requires you to import their script. Also note, we don't 
+           use the custom CSS container which we used for other providers such as
+           Youtube since Instagram handles it on their own -->
+
+<blockquote 
+  class="instagram-media" 
+  data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/{{ include.id }}/" 
+  style="max-width:540px; min-width:326px; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+</blockquote> 
+
+<script async src="//www.instagram.com/embed.js"></script>
+```
+
+Place this snippet inside your .md file where you want to embed your video:
+
+```liquid
+{% include instagramPlayer.html id=page.instagramId %}
+```
+
+On the top of your .md file, put the Instagram video/reel/post ID. You could also put the ID of the source directly.
+
+```yaml
+---
+instagramId: putYourIDHere
+---
+```
+
+**Note**: This is an extremely stripped down version of the built-in Instagram embed link they automatically generate when you click the `•••` then `Embed` on a post. Any tracking/information they tried to mine has been attempted to be removed as much as possible. As far as I can tell, there was been no effect on the embed behavior after removing them. Also be aware that you must include the Instagram JavaScript for embedding to work.
+
 ## Embed Twitter
 
 If your desired video/post URL to embed is for example
@@ -235,7 +278,7 @@ twitterId: putYourIDHere
 ---
 ```
 
-*Note*: This is a stripped down barebones embed method which strips down unnecessary code and should work for both videos and regular Twitter text posts. For [full customization options](https://publish.twitter.com/#) you can use Twitter's embed generator to set color themes, default language, conversation toggles and much more. 
+**Note**: This is a stripped down barebones embed method which strips down unnecessary code and should work for both videos and regular Twitter text posts. For [full customization options](https://publish.twitter.com/#) you can use Twitter's embed generator to set color themes, default language, conversation toggles and much more. 
 
 ## Embed Streamable
 
@@ -498,6 +541,7 @@ vimeoId: putYourIDHere
 twitchId: putYourIDHere
 twitchDomain: putYourDomainHere
 facebookId: putYourIDHere
+instagramId: putYourIDhere
 twitterId: putYourIDHere
 streamableId: putYourIDHere
 driveId: putYourIDHere
@@ -548,6 +592,16 @@ Example:     facebookId: 1243061482783766
 -->
 
 {% include facebookPlayer.html id=page.facebookId %}
+
+## Embed Instagram
+
+<!---
+Include this next line in your .md file for Instagram videos/reels/posts, make sure to put your video ID up there!
+
+Example:     instagramId: CgdzCoMoUBJ 
+-->
+
+{% include instagramPlayer.html id=page.instagramId %}
 
 ## Embed Twitter
 

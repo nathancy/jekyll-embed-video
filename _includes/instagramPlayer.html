@@ -1,0 +1,13 @@
+<!-- Used to embed Instagram videos, reels, or standard posts -->
+
+<!-- NOTE: Instagram requires you to import their script. Also note, we don't 
+           use the custom CSS container which we used for other providers such as
+           Youtube since Instagram handles it on their own -->
+
+<blockquote 
+  class="instagram-media" 
+  data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/{{ include.id }}/" 
+  style="max-width:540px; min-width:326px; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+</blockquote> 
+
+<script async src="//www.instagram.com/embed.js"></script>
