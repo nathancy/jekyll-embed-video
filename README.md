@@ -112,102 +112,77 @@ https://clips.twitch.tv/StylishChillyTubersDancingBaby
 
 The Twitch video ID would be `StylishChillyTubersDancingBaby`
 
-Embedding Twitch clips requires an additional "domain" parameter. This is simply your website URL. Create a file in your `_includes` folder called `twitchPlayer.html` with this code inside:
+Create a file in your `_includes` folder called `twitchPlayer.html` with this code inside:
 
 ```html
-<div class="embed-container">
-  <iframe
-      src="https://clips.twitch.tv/embed?clip={{ include.id }}&parent={{ include.domain }}"
-      width="700"
-      height="480"
-      frameborder="0"
-      scrolling="no"
-      allowfullscreen="true">
-  </iframe>
-</div>
+<!-- Used to embed Twitch videos -->
+
+<div class="embed-container" id="twitch-{{ include.id }}"></div>
+<script>
+  (function() {
+    var hostname = window.location.hostname || 'localhost';
+    var iframe = document.createElement('iframe');
+    iframe.src = "https://clips.twitch.tv/embed?clip={{ include.id }}&parent=" + hostname;
+    iframe.frameBorder = "0";
+    iframe.scrolling = "no";
+    iframe.width = "700";
+    iframe.height = "480";
+    iframe.allowFullscreen = true;
+    document.getElementById("twitch-{{ include.id }}").appendChild(iframe);
+  })();
+</script>
 ```
 
 Place this snippet inside your .md file where you want to embed your video:
 
 ```liquid
-{% include twitchPlayer.html id=page.twitchId domain=page.twitchDomain %}
+{% include twitchPlayer.html id=page.twitchId %}
 ```
 
-On the top of your .md file, put the Twitch video ID and domain name. You could also put the ID of the video directly.
+On the top of your .md file, put the Twitch video ID. You could also put the ID of the video directly.
 
 ```yaml
 ---
 twitchId: putYourIDHere
-twitchDomain: putYourDomainHere
 ---
 ```
 
-**Note**: If you are running your website on a `localhost` server, you may get a `clips.twitch.tv refused to connect` error. But as long as your "domain" is set correctly, it should properly display on the live production site. 
+**Note**: If you are running your website on a `localhost` server, you might get a `clips.twitch.tv refused to connect` error depending on your local setup. But it should properly display on the live production site.
 
 See the [embedding Twitch clips documentation](https://dev.twitch.tv/docs/embed/video-and-clips/#non-interactive-iframes-for-clips) for more details.
 
 ## Embed Facebook
 
-There are two types of Facebook videos/clips that you can embed: videos from the facebook feed using `<iframe>` or the newer Facebook Watch clips using the JavaScript SDK. 
-
-#### Standard Facebook feed videos
-
-The raw `<iframe>` method works but is buggy since its non-standard and rips out the tracking they do. This method may be preferred if you absolutely don't want Facebook to have any tracking. The raw version works but it is very buggy. There's also no easy to way extract the video ID, it's very ugly. 
-
-Click the video until it's fullscreen which will give you the option to press the `...` settings button. Next click on `Embed`. This will open up a dialog which will show you the `<iframe>` video code.
-
-**Note:** If you don't fullscreen the video, it will not give you the `Embed` option.
-
-Here's an example of what the non-standard `<iframe>` may look like:
-
-```html
-<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Falmost.co%2Fvideos%2F986032852221964%2F&width=500&show_text=false&height=500&appId" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-```
-
-Instead of using a template, it may be better to manually insert the code. For this method, you would simply copy/paste that code similar to all the other `_include` files. Due to the difficulty, hassle, and weird embed behavior, there will no example of this method here. The recommendation is to use the newer Facebook Watch clips method.
-
-#### Facebook Watch clips
-
-**Very Important**: The newer Facebook Watch clips method requires you to import a JavaScript SDK script which very very likely does some tracking in the background but automatically handles video resizing and has smooth playback using their own CSS. If you are not okay with this then you would have to use the non-standard version.
-
-Facebook pushed out their Watch feature on [https://www.facebook.com/watch](https://www.facebook.com/watch). This method can be used to embed any video from there. First choose a video you want to embed, then click on `Share` -> `Embed` -> `Advanced Settings`. This will open a new link. In the "Embedded Video Player Configurator", there will be a "URL of video" section which may look something like this:
-
-```
-https://www.facebook.com/pokergo/videos/1243061482783766/
-```
-
-If you already know the link of the specific video, the URL would look like this:
+To embed a Facebook video, you first need the video ID. You can find this by clicking on the desired video. The URL will look something like this:
 
 ```
 https://www.facebook.com/watch/?v=1243061482783766
 ```
 
-In both of these cases, the video ID would be `1243061482783766`. 
+Or a direct post link like this:
+
+```
+https://www.facebook.com/pokergo/videos/1243061482783766/
+```
+
+In both of these cases, the video ID would be `1243061482783766`.
 
 Next create a file in your `_includes` folder called `facebookPlayer.html` with this code inside:
 
 ```html
-<!-- NOTE: Facebook requires you to import their script, probably for tracking. Who knows. 
-           Make sure you're okay with doing this otherwise don't use this method! 
-           Also note, we don't use the CSS container which we used for other providers such as
-           Youtube since FB handles it on their own -->
-
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
-
-<!-- Your embedded video player code -->
-<div 
-    class="fb-video" 
-    data-href="https://www.facebook.com/watch/?v={{ include.id }}"
-    data-width="auto"
-    width="700" 
-    height="480"
-    data-allowfullscreen="true">
-</div>
+<!-- NOTE: We don't use the CSS embed-container for Facebook because it handles its own sizing. -->
+<iframe 
+  src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook%2Fvideos%2F{{ include.id }}%2F&show_text=0&width=700" 
+  width="700" 
+  height="394" 
+  style="border:none;overflow:hidden; display:block; margin:auto;" 
+  scrolling="no" 
+  frameborder="0" 
+  allowTransparency="true" 
+  allowFullScreen="true"
+  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+</iframe>
 ```
-
-**Note:** This is a ripped out version of the original JavaScript SDK code that Facebook provides which removes many unnecessary additions. If you want the original, click `Get Code` on the advanced settings page. 
 
 Place this snippet inside your .md file where you want to embed your video:
 
@@ -223,7 +198,7 @@ facebookId: 1243061482783766
 ---
 ```
 
-Facebook uses their own video parameters, for more information take a look at the [Embedded Video & Live Video Player](https://developers.facebook.com/docs/plugins/embedded-video-player/) documentation.
+For more information take a look at the [Embedded Video & Live Video Player](https://developers.facebook.com/docs/plugins/embedded-video-player/) documentation.
 
 ## Embed Instagram
 
@@ -238,17 +213,18 @@ The Instagram ID would be `CgdzCoMoUBJ`
 Next create a file in your `_includes` folder called `instagramPlayer.html` with this code inside:
 
 ```html
-<!-- NOTE: Instagram requires you to import their script. Also note, we don't 
-           use the custom CSS container which we used for other providers such as
-           Youtube since Instagram handles it on their own -->
+<!-- Used to embed Instagram videos, reels, or standard posts -->
 
-<blockquote 
-  class="instagram-media" 
-  data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/{{ include.id }}/" 
-  style="max-width:540px; min-width:326px; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-</blockquote> 
-
-<script async src="//www.instagram.com/embed.js"></script>
+<iframe 
+  src="https://www.instagram.com/p/{{ include.id }}/embed/captioned/" 
+  class="instagram-media instagram-media-rendered" 
+  allowtransparency="true" 
+  allowfullscreen="true" 
+  frameborder="0" 
+  height="700" 
+  style="background: white; border: 1px solid #dbdbdb; border-radius: 3px; box-shadow: none; display: block; margin: 0; min-width: 326px; padding: 0; width: 100%; max-width: 540px;" 
+  scrolling="no">
+</iframe>
 ```
 
 Place this snippet inside your .md file where you want to embed your video:
@@ -265,7 +241,7 @@ instagramId: putYourIDHere
 ---
 ```
 
-**Note**: This is an extremely stripped down version of the built-in Instagram embed link they automatically generate when you click the `•••` then `Embed` on a post. Any tracking/information they tried to harvest has been attempted to be removed as much as possible without affecting the embed behavior. Also be aware that you must include the Instagram JavaScript for embedding to work. This may have some spooky tracking unfortunately. 
+**Note**: This is an extremely stripped down version of the built-in Instagram embed link they automatically generate when you click the `•••` then `Embed` on a post. Any tracking/information they tried to harvest has been attempted to be removed as much as possible without affecting the embed behavior.
 
 ## Embed Twitter
 
@@ -401,15 +377,13 @@ Embedding Google Drive videos have additional steps.
   
    **Important**: If you do not change the video setting to this option, your video will not show.
   
-2. Double click the video to show the preview. Click the setting options and select "Open in new window". Now click on the setting option again and select "Embed item". The iframe code should appear. For example:
+2. Look at the URL of the video or click the setting options and select "Get link". You will see a URL similar to:
 
-```html
-<iframe src="https://drive.google.com/file/d/1EC8BnjJMon-vqy-UhLKk9sf_oukZzEbP/preview"></iframe>
+```
+https://drive.google.com/file/d/1EC8BnjJMon-vqy-UhLKk9sf_oukZzEbP/view?usp=sharing
 ```
 
-`1EC8BnjJMon-vqy-UhLKk9sf_oukZzEbP/preview` would be your video ID.
-
-**Note**: Right clicking the video will not bring up the embed option. You must open the video in a new window.
+The string between `/d/` and `/view` is your video ID: `1EC8BnjJMon-vqy-UhLKk9sf_oukZzEbP`.
 
 Create a file in your `_includes` folder called `googleDrivePlayer.html` with this code inside:
 
@@ -418,7 +392,7 @@ Create a file in your `_includes` folder called `googleDrivePlayer.html` with th
   <iframe
       width="700"
       height="480"
-      src="https://drive.google.com/file/d/{{ include.id }}"
+      src="https://drive.google.com/file/d/{{ include.id }}/preview"
       frameborder="0"
       allowfullscreen="true">
   </iframe>
@@ -617,7 +591,6 @@ Name              | Type    | Description
 youtubeId: putYourIDHere
 vimeoId: putYourIDHere
 twitchId: putYourIDHere
-twitchDomain: putYourDomainHere
 facebookId: putYourIDHere
 instagramId: putYourIDhere
 twitterId: putYourIDHere
@@ -654,13 +627,12 @@ Example:     vimeoID: 22439234
 ## Embed Twitch
 
 <!---
-Include this next line in your .md file for Twitch videos, make sure to put your video ID and domain up there!
+Include this next line in your .md file for Twitch videos, make sure to put your video ID up there!
 
 Example:     twitchId: GrotesqueArbitraryGullPupper
-             twitchDomain: www.nathan-lam.com
 -->
 
-{% include twitchPlayer.html id=page.twitchId domain=page.twitchDomain %}
+{% include twitchPlayer.html id=page.twitchId %}
 
 ## Embed Facebook
 
@@ -717,7 +689,7 @@ Example:     streamableId: s9ijg
 <!---
 Include this next line in your .md file for Google Drive videos, make sure to put your video ID up there!
 
-Example:     driveId: 0B7L_dMcaZknxVTRndmdSQ0F5OFE/preview
+Example:     driveId: 0B7L_dMcaZknxVTRndmdSQ0F5OFE
 -->
 
 {% include googleDrivePlayer.html id=page.driveId %}

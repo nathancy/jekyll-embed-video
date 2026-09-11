@@ -1,19 +1,13 @@
 <!-- Used to embed Facebook videos -->
-<!-- NOTE: Facebook requires you to import their script, probably for tracking. Who knows. 
-           Make sure you're okay with doing this otherwise don't use this method! 
-           Also note, we don't use the CSS container which we used for other providers such as
-           Youtube since FB handles it on their own -->
-
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
-
-<!-- Your embedded video player code -->
-<div 
-    class="fb-video" 
-    data-href="https://www.facebook.com/watch/?v={{ include.id }}"
-    data-width="auto" 
-    width="700" 
-    height="480"
-    data-allowfullscreen="true">
-</div>
+<!-- NOTE: We don't use the CSS embed-container for Facebook because it handles its own sizing. -->
+<iframe 
+  src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook%2Fvideos%2F{{ include.id }}%2F&show_text=0&width=700" 
+  width="700" 
+  height="394" 
+  style="border:none;overflow:hidden; display:block; margin:auto;" 
+  scrolling="no" 
+  frameborder="0" 
+  allowTransparency="true" 
+  allowFullScreen="true"
+  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+</iframe>

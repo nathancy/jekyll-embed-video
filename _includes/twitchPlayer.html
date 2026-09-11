@@ -1,28 +1,16 @@
-<!-- Feel free to change the width and height to your desired video size. -->
-<!-- OLD Version (USE NEW VERSION)
+<!-- Used to embed Twitch videos -->
 
-<div class="embed-container">
-  <iframe
-      src="https://clips.twitch.tv/embed?clip={{ include.id }}"
-      height="360"
-      width="640"
-      frameborder="0"
-      scrolling="no"
-      allowfullscreen="true">
-  </iframe>
-</div>
-
--->
-
-<!-- NEW Version -->
-
-<div class="embed-container">
-  <iframe
-      src="https://clips.twitch.tv/embed?clip={{ include.id }}&parent={{ include.domain }}"
-      width="700"
-      height="480"
-      frameborder="0"
-      scrolling="no"
-      allowfullscreen="true">
-  </iframe>
-</div>
+<div class="embed-container" id="twitch-{{ include.id }}"></div>
+<script>
+  (function() {
+    var hostname = window.location.hostname || 'localhost';
+    var iframe = document.createElement('iframe');
+    iframe.src = "https://clips.twitch.tv/embed?clip={{ include.id }}&parent=" + hostname;
+    iframe.frameBorder = "0";
+    iframe.scrolling = "no";
+    iframe.width = "700";
+    iframe.height = "480";
+    iframe.allowFullscreen = true;
+    document.getElementById("twitch-{{ include.id }}").appendChild(iframe);
+  })();
+</script>
