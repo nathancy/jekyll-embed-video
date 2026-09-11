@@ -558,6 +558,8 @@ For responsive videos that automatically resize with changing window sizes, add 
   height: 0;
   overflow: hidden;
   max-width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .embed-container iframe, .embed-container object, .embed-container embed {
